@@ -17,6 +17,7 @@ const (
 	xclip              = "xclip"
 	wlcopy = "wl-copy"
 	wlpaste = "wl-paste"
+	pbcopy = "pbcopy"
 	termuxClipboardGet = "termux-clipboard-get"
 	termuxClipboardSet = "termux-clipboard-set"
 )
@@ -38,8 +39,10 @@ var (
 
 	termuxPasteArgs = []string{termuxClipboardGet}
 	termuxCopyArgs  = []string{termuxClipboardSet}
+	
+	pbcopyArgs = []string{pbcopy}
 
-	missingCommands = errors.New("No clipboard utilities available. Please install xsel, xclip, wl-clipboard or Termux:API add-on for termux-clipboard-get/set.")
+	missingCommands = errors.New("No clipboard utilities available. Please install xsel, xclip, wl-clipboard, pbcopy or Termux:API add-on for termux-clipboard-get/set.")
 )
 
 func init() {
@@ -75,6 +78,11 @@ func init() {
 		if _, err := exec.LookPath(termuxClipboardGet); err == nil {
 			return
 		}
+	}
+	
+	copyCmdArgs = pbcopyArgs
+	if _, err := exec.LookPath(pbcopy); err == nil {
+		return	
 	}
 
 	Unsupported = true
