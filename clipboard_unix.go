@@ -119,6 +119,7 @@ func writeAll(text string) error {
 		return missingCommands
 	}
 	copyCmd := getCopyCommand()
+	copyCmd.Stdout = os.Stdout
 	in, err := copyCmd.StdinPipe()
 	if err != nil {
 		return err
