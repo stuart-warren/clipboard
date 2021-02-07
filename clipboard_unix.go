@@ -17,7 +17,7 @@ const (
 	xclip              = "xclip"
 	wlcopy = "wl-copy"
 	wlpaste = "wl-paste"
-	pbcopy = "pbcopy"
+	pbcopy = "rpbcopy"
 	termuxClipboardGet = "termux-clipboard-get"
 	termuxClipboardSet = "termux-clipboard-set"
 )
